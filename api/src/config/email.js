@@ -67,18 +67,34 @@ export const sendWelcomeEmail = async (to, name) => {
 export const sendResetPasswordEmail = async (to, token) => {
   const resetUrl = `https://seusite.com/reset-password?token=${token}`
   const htmlContent = `
-    <h2>Redefinição de senha</h2>
-    <p>Você solicitou redefinir sua senha.</p>
-    <p>Clique no botão abaixo para criar uma nova senha:</p>
-    <a href="${resetUrl}"
-      style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
-      Redefinir Senha
-    </a>
-    <p>Se você não solicitou, ignore este e-mail.</p>
-  `
+  <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 40px 0;">
+    <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 30px;">
+
+      <h2 style="color: #333333; text-align: center;">Redefinição de senha</h2>
+      <p style="color: #555555; font-size: 16px; line-height: 1.5;">
+        Você solicitou redefinir sua senha. Clique no botão abaixo para criar uma nova senha:
+      </p>
+
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="${resetUrl}"
+          style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; font-size: 16px;">
+          Redefinir Senha
+        </a>
+      </div>
+
+      <p style="color: #999999; font-size: 14px; line-height: 1.5; text-align: center;">
+        Se você não solicitou esta alteração, pode ignorar este e-mail com segurança.
+      </p>
+
+      <p style="color: #999999; font-size: 12px; line-height: 1.5; text-align: center; margin-top: 20px;">
+        &copy; ${new Date().getFullYear()} Equipe Visionários 🚀. Todos os direitos reservados.
+      </p>
+    </div>
+  </div>
+`
 
   await transporter.sendMail({
-    from: `"Equipe Visionários" <${process.env.EMAIL_USER}>`,
+    from: `"Equipe Visionários 🏡" <${process.env.EMAIL_USER}>`,
     to,
     subject: 'Redefinição de senha Equipe Visionários',
     html: htmlContent,
