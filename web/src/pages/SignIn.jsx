@@ -45,15 +45,13 @@ export default function SignIn() {
     try {
       const res = await api.post("/api/users/login", data);
 
-      // 🔹 Garantir que o toast leia o user corretamente
-      const user = res.data.user;
-      toast.success(`👋 Bem-vindo, ${user.name}!`);
+      const user = res.data.user || res.data;
 
-      // Armazenar dados no localStorage
+      toast.success(`👋 Bem-vindo, ${user.name || "Usuário"}!`);
+
       localStorage.setItem("userInfo", JSON.stringify(res.data));
 
-      // Redirecionar baseado na role
-      if (user.role === "admin") {
+      if (user.isAdmin) {
         navigate("/dashboard");
       } else {
         navigate("/profile");
@@ -64,8 +62,7 @@ export default function SignIn() {
       const message = err.response?.data?.message || "Erro ao realizar login";
       toast.error(message);
     }
-  };
-
+  }
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">

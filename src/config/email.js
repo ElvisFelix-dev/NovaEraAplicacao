@@ -65,7 +65,7 @@ export const sendWelcomeEmail = async (to, name) => {
 }
 
 export const sendResetPasswordEmail = async (to, token) => {
-  const resetUrl = `https://seusite.com/reset-password?token=${token}`
+  const resetUrl = `http://localhost:5173/reset-password/${token}`
   const htmlContent = `
   <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 40px 0;">
     <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 30px;">

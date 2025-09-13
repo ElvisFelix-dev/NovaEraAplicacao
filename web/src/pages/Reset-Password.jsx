@@ -13,11 +13,6 @@ import imgLogo from "../assets/logoVisionario.png";
 
 // Validação com Yup
 const schema = yup.object().shape({
-  name: yup.string().required("O nome é obrigatório"),
-  email: yup
-    .string()
-    .required("O email é obrigatório")
-    .email("Por favor, insira um email válido"),
   password: yup
     .string()
     .required("A senha é obrigatória")
